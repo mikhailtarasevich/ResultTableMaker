@@ -1,6 +1,7 @@
 package com.mikhail.tarasevich.resulttablemaker.domain;
 
 public class Racer {
+    
     private String racerAbbreviation;
     private String racerName;
     private String teamName;
