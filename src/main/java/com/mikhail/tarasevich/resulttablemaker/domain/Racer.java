@@ -1,51 +1,47 @@
 package com.mikhail.tarasevich.resulttablemaker.domain;
 
+import java.util.Objects;
+
 public class Racer {
     
-    private String racerAbbreviation;
     private String racerName;
     private String teamName;
-    
-    public Racer(String abbreviation, String racerName, String teamName) {
-        this.racerAbbreviation = abbreviation;
+    private String startTime;
+    private String finishTime;
+    public Racer(String racerName, String teamName, String startTime, String finishTime) {
         this.racerName = racerName;
         this.teamName = teamName;
+        this.startTime = startTime;
+        this.finishTime = finishTime;
     }
-
-    public String getAbbreviation() {
-        return racerAbbreviation;
-    }
-
-    public void setAbbreviation(String abbreviation) {
-        this.racerAbbreviation = abbreviation;
-    }
-
     public String getRacerName() {
         return racerName;
     }
-
     public void setRacerName(String racerName) {
         this.racerName = racerName;
     }
-
     public String getTeamName() {
         return teamName;
     }
-
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
-
+    public String getStartTime() {
+        return startTime;
+    }
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    public String getFinishTime() {
+        return finishTime;
+    }
+    public void setFinishTime(String finishTime) {
+        this.finishTime = finishTime;
+    }
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((racerAbbreviation == null) ? 0 : racerAbbreviation.hashCode());
-        result = prime * result + ((racerName == null) ? 0 : racerName.hashCode());
-        result = prime * result + ((teamName == null) ? 0 : teamName.hashCode());
-        return result;
+        return Objects.hash(finishTime, racerName, startTime, teamName);
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -55,28 +51,15 @@ public class Racer {
         if (getClass() != obj.getClass())
             return false;
         Racer other = (Racer) obj;
-        if (racerAbbreviation == null) {
-            if (other.racerAbbreviation != null)
-                return false;
-        } else if (!racerAbbreviation.equals(other.racerAbbreviation))
-            return false;
-        if (racerName == null) {
-            if (other.racerName != null)
-                return false;
-        } else if (!racerName.equals(other.racerName))
-            return false;
-        if (teamName == null) {
-            if (other.teamName != null)
-                return false;
-        } else if (!teamName.equals(other.teamName))
-            return false;
-        return true;
+        return Objects.equals(finishTime, other.finishTime) && Objects.equals(racerName, other.racerName)
+                && Objects.equals(startTime, other.startTime) && Objects.equals(teamName, other.teamName);
     }
-
     @Override
     public String toString() {
-        return "Racer [abbreviation=" + racerAbbreviation + ", racerName=" + racerName + ", teamName=" + teamName + "]";
+        return "Racer [racerName=" + racerName + ", teamName=" + teamName + ", startTime=" + startTime + ", finishTime="
+                + finishTime + "]";
     }
     
+       
     
 }
