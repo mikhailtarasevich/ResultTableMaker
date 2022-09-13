@@ -40,6 +40,8 @@ public class ResultTableMakerApplication {
         List<Racer> racerList = racerInfoList.createRacersList(reader.readInfoFromFile(racer),
                 reader.readInfoFromFile(start), reader.readInfoFromFile(finish));
         
+        
+        
 //        
 //        
 //        //Date date = new Date("05/12/222");

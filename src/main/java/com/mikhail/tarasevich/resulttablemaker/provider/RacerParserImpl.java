@@ -14,21 +14,22 @@ public class RacerParserImpl implements RacerParser {
 
     @Override
 
-    public List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList, List<String> finishTimeList) throws ParseException{
+    public List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,
+            List<String> finishTimeList) throws ParseException {
 
         List<Racer> racerList = new ArrayList<>();
 
-        List<String[]> infoListAboutRacers = addRacersInformationToList(racerInfoList);
-        Map<String, String> infoListAboutStartTime = addTimeInformationToMap(startTimeList);
-        Map<String, String> infoListAboutFinishTime = addTimeInformationToMap(finishTimeList);
+        Map<String, String> racerNameMap = addRacerNameToMap(racerInfoList);
+        Map<String, String> teamNameMap = addTeamNameToMap(racerInfoList);
+        Map<String, String> startTimeMap = addTimeToMap(startTimeList);
+        Map<String, String> finishTimeMap = addTimeToMap(finishTimeList);
 
-        for (int i = 0; i < racerInfoList.size(); i++) {
-
+        for (String abbreviation : racerNameMap.keySet()) {
             Racer racer = new Racer.Builder()
-                    .racerName(infoListAboutRacers.get(i)[1])
-                    .teamName(infoListAboutRacers.get(i)[2])
-                    .startTime(convertStringTimeToDateTime(infoListAboutStartTime.get(infoListAboutRacers.get(i)[0])))
-                    .finishTime(convertStringTimeToDateTime(infoListAboutFinishTime.get(infoListAboutRacers.get(i)[0])))
+                    .racerName(racerNameMap.get(abbreviation))
+                    .teamName(teamNameMap.get(abbreviation))
+                    .startTime(convertStringTimeToDateTime(startTimeMap.get(abbreviation)))
+                    .finishTime(convertStringTimeToDateTime(finishTimeMap.get(abbreviation)))
                     .build();
             racerList.add(racer);
         }
@@ -36,19 +37,31 @@ public class RacerParserImpl implements RacerParser {
         return racerList;
     }
 
-    private List<String[]> addRacersInformationToList(List<String> racerList) {
+    private Map<String, String> addRacerNameToMap(List<String> racerList) {
 
-        List<String[]> racersList = new ArrayList<>();
+        Map<String, String> nameMap = new HashMap<>();
 
-        for (int i = 0; i < racerList.size(); i++) {
-            racersList.add(racerList.get(i).split("_"));
+        for (String string : racerList) {
+            nameMap.put(string.split("_")[0], string.split("_")[1]);
         }
 
-        return racersList;
-        
+        return nameMap;
+
     }
 
-    private Map<String, String> addTimeInformationToMap(List<String> timeList) {
+    private Map<String, String> addTeamNameToMap(List<String> racerList) {
+
+        Map<String, String> nameMap = new HashMap<>();
+
+        for (String string : racerList) {
+            nameMap.put(string.split("_")[0], string.split("_")[1]);
+        }
+
+        return nameMap;
+
+    }
+
+    private Map<String, String> addTimeToMap(List<String> timeList) {
 
         Map<String, String> timeMap = new HashMap<>();
 
@@ -62,7 +75,7 @@ public class RacerParserImpl implements RacerParser {
     private Date convertStringTimeToDateTime(String stringTime) throws ParseException {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
-       
+
         return simpleDateFormat.parse(stringTime);
     }
 
