@@ -54,7 +54,7 @@ public class RacerParserImpl implements RacerParser {
         Map<String, String> nameMap = new HashMap<>();
 
         for (String string : racerList) {
-            nameMap.put(string.split("_")[0], string.split("_")[1]);
+            nameMap.put(string.split("_")[0], string.split("_")[2]);
         }
 
         return nameMap;

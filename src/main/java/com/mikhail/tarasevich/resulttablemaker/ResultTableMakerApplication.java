@@ -40,7 +40,9 @@ public class ResultTableMakerApplication {
         List<Racer> racerList = racerInfoList.createRacersList(reader.readInfoFromFile(racer),
                 reader.readInfoFromFile(start), reader.readInfoFromFile(finish));
         
-        
+        for(Racer list:racerList) {
+            System.out.println(list);
+        }
         
 //        
 //        
