@@ -30,11 +30,8 @@ public class ViewProviderImpl implements ViewProvider {
     private Map<Duration, Racer> calculateLapTimeAndCreateMapInOrderFromFastestLap (List<Racer> racerList) throws ParseException{
         
         Map<Duration, Racer> racersMapInOrderFromFastestLap = new TreeMap<>();
-        DateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
-        
+                
         for(int i = 0; i < racerList.size(); i++) {
-            Date startTime = dateTimeFormat.parse(racerList.get(i).getStartTime());
-            Date finishTime = dateTimeFormat.parse(racerList.get(i).getFinishTime());
             Duration lapTime = Duration.between(startTime.toInstant(), finishTime.toInstant()).abs();
             racersMapInOrderFromFastestLap.put(lapTime, racerList.get(i));
         }

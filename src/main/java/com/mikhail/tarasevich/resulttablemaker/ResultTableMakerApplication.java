@@ -5,6 +5,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -25,20 +27,38 @@ import com.mikhail.tarasevich.resulttablemaker.provider.ViewProviderImpl;
 
 public class ResultTableMakerApplication {
 
+
     public static void main(String[] args) throws FileNotFoundException, Exception {
 
+        
         RacerParser racerInfoList = new RacerParserImpl();
         FileInfoReader reader = new FileInfoReaderImpl();
-        String racer = "C:\\repository\\repositoryResultTableMaker\\src\\main\\resources\\abbreviations.txt";
-        String start = "C:\\repository\\repositoryResultTableMaker\\src\\main\\resources\\start.log";
-        String finish = "C:\\repository\\repositoryResultTableMaker\\src\\main\\resources\\end.log";
+        String racer = "src\\main\\resources\\abbreviations.txt";
+        String start = "src\\main\\resources\\start.log";
+        String finish = "src\\main\\resources\\end.log";
 
         List<Racer> racerList = racerInfoList.createRacersList(reader.readInfoFromFile(racer),
                 reader.readInfoFromFile(start), reader.readInfoFromFile(finish));
         
-        ViewProvider viewProvider = new ViewProviderImpl();
-        System.out.println(viewProvider.provideResultTableView(racerList));
-        System.out.println("dd");
+//        
+//        
+//        //Date date = new Date("05/12/222");
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
+//        Date date = simpleDateFormat.parse("20009-05-05_12:35:33.222");
+//        System.out.println(date.getDate());
+//        System.out.println(date.getDay());
+//        System.out.println(date.getHours());
+//        System.out.println(date.getMinutes());
+//        System.out.println(date.getSeconds());
+//        System.out.println(date.getTimezoneOffset());
+//        
+//        LocalTime lt = LocalTime.parse("12:35:33.222");
+//        System.out.println(lt);
+//        
+        
+//        ViewProvider viewProvider = new ViewProviderImpl();
+//        System.out.println(viewProvider.provideResultTableView(racerList));
+//        System.out.println("dd");
         
 //        System.out.println(racerList.get(0).toString());
 //        System.out.println(racerList.get(1).toString());

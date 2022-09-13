@@ -1,13 +1,14 @@
 package com.mikhail.tarasevich.resulttablemaker.domain;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Racer {
     
     private final String racerName;
     private final String teamName;
-    private final String startTime;
-    private final String finishTime;
+    private final Date startTime;
+    private final Date finishTime;
    
     public Racer(Builder builder) {
         this.racerName = builder.racerName;
@@ -24,11 +25,11 @@ public class Racer {
         return teamName;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public String getFinishTime() {
+    public Date getFinishTime() {
         return finishTime;
     }
          
@@ -60,8 +61,8 @@ public class Racer {
         
         private  String racerName;
         private  String teamName;
-        private  String startTime;
-        private  String finishTime;
+        private  Date startTime;
+        private  Date finishTime;
         
         public Builder racerName(final String racerName) {
             this.racerName = racerName;
@@ -73,12 +74,12 @@ public class Racer {
             return this;
         }
         
-        public Builder startTime(final String startTime) {
+        public Builder startTime(final Date startTime) {
             this.startTime = startTime;
             return this;
         }
         
-        public Builder finishTime(final String finishTime) {
+        public Builder finishTime(final Date finishTime) {
             this.finishTime = finishTime;
             return this;
         }

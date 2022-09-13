@@ -1,9 +1,10 @@
 package com.mikhail.tarasevich.resulttablemaker.provider;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
 
 public interface RacerParser {
-    List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,List<String> finishTimeList);
+    List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,List<String> finishTimeList) throws ParseException;
 }

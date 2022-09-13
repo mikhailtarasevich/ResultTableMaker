@@ -1,6 +1,9 @@
 package com.mikhail.tarasevich.resulttablemaker.provider;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,48 +14,56 @@ public class RacerParserImpl implements RacerParser {
 
     @Override
 
- public List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,
-            List<String> finishTimeList) {
-        
+    public List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList, List<String> finishTimeList) throws ParseException{
+
         List<Racer> racerList = new ArrayList<>();
-        
+
         List<String[]> infoListAboutRacers = addRacersInformationToList(racerInfoList);
         Map<String, String> infoListAboutStartTime = addTimeInformationToMap(startTimeList);
         Map<String, String> infoListAboutFinishTime = addTimeInformationToMap(finishTimeList);
-        
-        for(int i = 0; i < racerInfoList.size(); i++) {         
-            
-            Racer racer = new Racer.Builder().racerName(infoListAboutRacers.get(i)[1])
+
+        for (int i = 0; i < racerInfoList.size(); i++) {
+
+            Racer racer = new Racer.Builder()
+                    .racerName(infoListAboutRacers.get(i)[1])
                     .teamName(infoListAboutRacers.get(i)[2])
-                    .startTime(infoListAboutStartTime.get(infoListAboutRacers.get(i)[0]))
-                    .finishTime(infoListAboutFinishTime.get(infoListAboutRacers.get(i)[0]))
+                    .startTime(convertStringTimeToDateTime(infoListAboutStartTime.get(infoListAboutRacers.get(i)[0])))
+                    .finishTime(convertStringTimeToDateTime(infoListAboutFinishTime.get(infoListAboutRacers.get(i)[0])))
                     .build();
             racerList.add(racer);
         }
-                
+
         return racerList;
     }
-    
+
     private List<String[]> addRacersInformationToList(List<String> racerList) {
-        
+
         List<String[]> racersList = new ArrayList<>();
-               
-        for(int i = 0; i < racerList.size(); i++) {           
+
+        for (int i = 0; i < racerList.size(); i++) {
             racersList.add(racerList.get(i).split("_"));
         }
-        
+
         return racersList;
+        
     }
-    
+
     private Map<String, String> addTimeInformationToMap(List<String> timeList) {
-        
+
         Map<String, String> timeMap = new HashMap<>();
-        
+
         for (int i = 0; i < timeList.size(); i++) {
             timeMap.put(timeList.get(i).substring(0, 3), timeList.get(i).substring(3));
         }
-        
+
         return timeMap;
     }
-    
+
+    private Date convertStringTimeToDateTime(String stringTime) throws ParseException {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
+       
+        return simpleDateFormat.parse(stringTime);
+    }
+
 }
