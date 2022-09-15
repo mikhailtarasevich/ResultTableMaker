@@ -2,11 +2,12 @@ package com.mikhail.tarasevich.resulttablemaker.provider;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
 
@@ -14,10 +15,10 @@ public class RacerParserImpl implements RacerParser {
 
     @Override
 
-    public List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,
+    public Set<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,
             List<String> finishTimeList) throws ParseException {
 
-        List<Racer> racerList = new ArrayList<>();
+        Set<Racer> racerList = new TreeSet<>();
 
         Map<String, String> racerNameMap = addRacerNameToMap(racerInfoList);
         Map<String, String> teamNameMap = addTeamNameToMap(racerInfoList);

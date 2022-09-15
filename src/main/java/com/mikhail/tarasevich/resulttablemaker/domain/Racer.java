@@ -1,9 +1,10 @@
 package com.mikhail.tarasevich.resulttablemaker.domain;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.Objects;
 
-public class Racer {
+public class Racer implements Comparable<Racer> {
     
     private final String racerName;
     private final String teamName;
@@ -15,6 +16,10 @@ public class Racer {
         this.teamName = builder.teamName;
         this.startTime = builder.startTime;
         this.finishTime = builder.finishTime;
+    }
+    
+    public Duration getTimeOfLap() {
+        return Duration.between(startTime.toInstant(), finishTime.toInstant());
     }
     
     public String getRacerName() {
@@ -32,7 +37,7 @@ public class Racer {
     public Date getFinishTime() {
         return finishTime;
     }
-         
+       
     @Override
     public int hashCode() {
         return Objects.hash(finishTime, racerName, startTime, teamName);
@@ -50,7 +55,12 @@ public class Racer {
         return Objects.equals(finishTime, other.finishTime) && Objects.equals(racerName, other.racerName)
                 && Objects.equals(startTime, other.startTime) && Objects.equals(teamName, other.teamName);
     }
-
+    
+    @Override
+    public int compareTo(Racer anotherRacer) {     
+        return this.getTimeOfLap().getNano() - anotherRacer.getTimeOfLap().getNano();
+    } 
+    
     @Override
     public String toString() {
         return "Racer [racerName=" + racerName + ", teamName=" + teamName + ", startTime=" + startTime + ", finishTime="
@@ -88,6 +98,6 @@ public class Racer {
             return new Racer(this);
         }
         
-    }    
+    } 
     
 }

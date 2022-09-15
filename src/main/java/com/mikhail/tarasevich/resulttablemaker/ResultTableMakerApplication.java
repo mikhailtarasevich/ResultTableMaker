@@ -37,14 +37,20 @@ public class ResultTableMakerApplication {
         String start = "src\\main\\resources\\start.log";
         String finish = "src\\main\\resources\\end.log";
 
-        List<Racer> racerList = racerInfoList.createRacersList(reader.readInfoFromFile(racer),
+        Set<Racer> racerList = racerInfoList.createRacersList(reader.readInfoFromFile(racer),
                 reader.readInfoFromFile(start), reader.readInfoFromFile(finish));
         
-        for(Racer list:racerList) {
-            System.out.println(list);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+        for (Racer r : racerList) {
+            System.out.println(r.getTimeOfLap());
         }
+        System.out.println();
+        System.out.println();
+        System.out.println();
         
-//        
+        System.out.println(racerList.toArray()[0]);
+
+        //        
 //        
 //        //Date date = new Date("05/12/222");
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
