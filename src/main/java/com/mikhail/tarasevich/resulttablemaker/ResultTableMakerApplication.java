@@ -1,6 +1,6 @@
 package com.mikhail.tarasevich.resulttablemaker;
 
-import java.io.FileNotFoundException;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,29 +27,33 @@ import com.mikhail.tarasevich.resulttablemaker.provider.ViewProviderImpl;
 
 public class ResultTableMakerApplication {
 
-
-    public static void main(String[] args) throws FileNotFoundException, Exception {
-
+  
+    
+    public static void main(String[] args) throws Exception {
         
+        
+           
         RacerParser racerInfoList = new RacerParserImpl();
         FileInfoReader reader = new FileInfoReaderImpl();
+        ViewProvider viewProvider = new ViewProviderImpl();
         String racer = "src\\main\\resources\\abbreviations.txt";
         String start = "src\\main\\resources\\start.log";
         String finish = "src\\main\\resources\\end.log";
 
         Set<Racer> racerList = racerInfoList.createRacersList(reader.readInfoFromFile(racer),
                 reader.readInfoFromFile(start), reader.readInfoFromFile(finish));
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
-        for (Racer r : racerList) {
-            System.out.println(r.getTimeOfLap());
-        }
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        
-        System.out.println(racerList.toArray()[0]);
+        System.out.println(viewProvider.provideResultTableView(racerList));
 
+        
+        Date vre = new Date(725566);
+        System.out.println(vre);
+        System.out.println(String.format("%0"+ (20 - "Apple".length() )+"d%s %n",0 ,"Apple"));
+        System.out.println(String.format("Now is %tT",vre));
+        System.out.println(String.format("Now is %tA %<tB %<tB %<td, %<tY",vre));
+       
+        
+        
+        
         //        
 //        
 //        //Date date = new Date("05/12/222");

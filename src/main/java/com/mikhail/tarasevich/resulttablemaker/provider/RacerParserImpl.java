@@ -14,24 +14,19 @@ import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
 public class RacerParserImpl implements RacerParser {
 
     @Override
-
-    public Set<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,
-            List<String> finishTimeList) throws ParseException {
+    public Set<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList, List<String> finishTimeList) throws ParseException {
 
         Set<Racer> racerList = new TreeSet<>();
-
         Map<String, String> racerNameMap = addRacerNameToMap(racerInfoList);
         Map<String, String> teamNameMap = addTeamNameToMap(racerInfoList);
         Map<String, String> startTimeMap = addTimeToMap(startTimeList);
         Map<String, String> finishTimeMap = addTimeToMap(finishTimeList);
 
-        for (String abbreviation : racerNameMap.keySet()) {
-            Racer racer = new Racer.Builder()
-                    .racerName(racerNameMap.get(abbreviation))
-                    .teamName(teamNameMap.get(abbreviation))
-                    .startTime(convertStringTimeToDateTime(startTimeMap.get(abbreviation)))
-                    .finishTime(convertStringTimeToDateTime(finishTimeMap.get(abbreviation)))
-                    .build();
+        for (String key : racerNameMap.keySet()) {
+            Racer racer = Racer.Builder()
+                               .racerName(racerNameMap.get(key)).teamName(teamNameMap.get(key))
+                               .startTime(convertStringTimeToDateTime(startTimeMap.get(key)))
+                               .finishTime(convertStringTimeToDateTime(finishTimeMap.get(key))).build();
             racerList.add(racer);
         }
 
@@ -47,7 +42,6 @@ public class RacerParserImpl implements RacerParser {
         }
 
         return nameMap;
-
     }
 
     private Map<String, String> addTeamNameToMap(List<String> racerList) {
@@ -76,7 +70,7 @@ public class RacerParserImpl implements RacerParser {
     private Date convertStringTimeToDateTime(String stringTime) throws ParseException {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
-
+        
         return simpleDateFormat.parse(stringTime);
     }
 

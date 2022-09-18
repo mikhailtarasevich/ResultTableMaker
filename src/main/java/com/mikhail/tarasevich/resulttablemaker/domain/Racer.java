@@ -4,14 +4,14 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.Objects;
 
-public class Racer implements Comparable<Racer> {
+public class Racer{
     
     private final String racerName;
     private final String teamName;
     private final Date startTime;
     private final Date finishTime;
    
-    public Racer(Builder builder) {
+    private Racer(Builder builder) {
         this.racerName = builder.racerName;
         this.teamName = builder.teamName;
         this.startTime = builder.startTime;
@@ -56,10 +56,10 @@ public class Racer implements Comparable<Racer> {
                 && Objects.equals(startTime, other.startTime) && Objects.equals(teamName, other.teamName);
     }
     
-    @Override
-    public int compareTo(Racer anotherRacer) {     
-        return this.getTimeOfLap().getNano() - anotherRacer.getTimeOfLap().getNano();
-    } 
+//    @Override
+//    public int compareTo(Racer anotherRacer) {     
+//        return this.getTimeOfLap().getNano() - anotherRacer.getTimeOfLap().getNano();
+//    } 
     
     @Override
     public String toString() {
@@ -67,6 +67,10 @@ public class Racer implements Comparable<Racer> {
                 + finishTime + "]";
     }
 
+    public static Builder Builder() {
+        return new Builder();
+    }
+    
     public static class Builder {
         
         private  String racerName;
