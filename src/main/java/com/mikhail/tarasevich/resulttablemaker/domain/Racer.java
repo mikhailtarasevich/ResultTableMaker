@@ -56,11 +56,6 @@ public class Racer{
                 && Objects.equals(startTime, other.startTime) && Objects.equals(teamName, other.teamName);
     }
     
-//    @Override
-//    public int compareTo(Racer anotherRacer) {     
-//        return this.getTimeOfLap().getNano() - anotherRacer.getTimeOfLap().getNano();
-//    } 
-    
     @Override
     public String toString() {
         return "Racer [racerName=" + racerName + ", teamName=" + teamName + ", startTime=" + startTime + ", finishTime="

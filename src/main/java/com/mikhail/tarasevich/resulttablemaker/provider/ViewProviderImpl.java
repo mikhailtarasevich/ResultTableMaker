@@ -20,7 +20,7 @@ public class ViewProviderImpl implements ViewProvider {
         int racerNameWidthColumn = calculateRacerNameColumnWidth(racerList);
         int teamNameWidthColumn = calculateTeamNameColumnWidth(racerList);
         
-        resultTable.append(String.format("%-10s%-" + racerNameWidthColumn + "s%-" + teamNameWidthColumn + "s%s"
+        resultTable.append(String.format("%-10s%-" + racerNameWidthColumn + "s%-" + teamNameWidthColumn + "s%-10s"
                     ,"Position", "Racer name", "Team name", "Time"));
         resultTable.append(LINE_BRAKE);
         

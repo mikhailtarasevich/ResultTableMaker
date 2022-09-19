@@ -2,7 +2,9 @@ package com.mikhail.tarasevich.resulttablemaker;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
 import com.mikhail.tarasevich.resulttablemaker.provider.FileInfoReader;
@@ -26,8 +28,6 @@ public class StatisticAnalyzer {
     
     public String provideStatistic(String racerListReference,String startListReference,String finishListReference) throws ParseException, IOException {
         
-        String resultTable = null;
-        
         validator.validateFile(racerListReference);
         validator.validateFile(startListReference);
         validator.validateFile(finishListReference);
@@ -35,7 +35,21 @@ public class StatisticAnalyzer {
         Set<Racer> racerList = racerParser.createRacersList(fileInfoReader.readInfoFromFile(racerListReference),
                 fileInfoReader.readInfoFromFile(startListReference), fileInfoReader.readInfoFromFile(finishListReference));
         
+        LapTimeComparator lapTimeComparator = new LapTimeComparator();
+        Set<Racer> comparedRacerList = new TreeSet<>(lapTimeComparator);
+        for (Racer racer : racerList) {
+            comparedRacerList.add(racer);
+        }
+                
+        return viewProvider.provideResultTableView(comparedRacerList).toString();
+    }
+    
+    private class LapTimeComparator implements Comparator<Racer>{
+
+        @Override
+        public int compare(Racer o1, Racer o2) {
+            return (int)o1.getTimeOfLap().toMillis() - (int)o2.getTimeOfLap().toMillis();          
+        }
         
-        return resultTable;
     }
 }

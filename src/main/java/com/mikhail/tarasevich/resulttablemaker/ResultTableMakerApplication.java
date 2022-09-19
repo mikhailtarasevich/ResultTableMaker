@@ -1,6 +1,5 @@
 package com.mikhail.tarasevich.resulttablemaker;
 
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,37 +23,41 @@ import com.mikhail.tarasevich.resulttablemaker.provider.RacerParser;
 import com.mikhail.tarasevich.resulttablemaker.provider.RacerParserImpl;
 import com.mikhail.tarasevich.resulttablemaker.provider.ViewProvider;
 import com.mikhail.tarasevich.resulttablemaker.provider.ViewProviderImpl;
+import com.mikhail.tarasevich.resulttablemaker.validator.Validator;
+import com.mikhail.tarasevich.resulttablemaker.validator.ValidatorImpl;
 
-public class ResultTableMakerApplication {
-
-  
+public class ResultTableMakerApplication { 
     
     public static void main(String[] args) throws Exception {
-        
-        
-           
+          
+        Validator validator = new ValidatorImpl();   
+        FileInfoReader fileInfoReader = new FileInfoReaderImpl();
         RacerParser racerInfoList = new RacerParserImpl();
-        FileInfoReader reader = new FileInfoReaderImpl();
         ViewProvider viewProvider = new ViewProviderImpl();
+        StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator,fileInfoReader, racerInfoList, viewProvider);
+        
         String racer = "src\\main\\resources\\abbreviations.txt";
         String start = "src\\main\\resources\\start.log";
         String finish = "src\\main\\resources\\end.log";
 
-        Set<Racer> racerList = racerInfoList.createRacersList(reader.readInfoFromFile(racer),
-                reader.readInfoFromFile(start), reader.readInfoFromFile(finish));
-        System.out.println(viewProvider.provideResultTableView(racerList));
-
         
-        Date vre = new Date(725566);
-        System.out.println(vre);
-        System.out.println(String.format("%0"+ (20 - "Apple".length() )+"d%s %n",0 ,"Apple"));
-        System.out.println(String.format("Now is %tT",vre));
-        System.out.println(String.format("Now is %tA %<tB %<tB %<td, %<tY",vre));
-       
+        System.out.println(statisticAnalyzer.provideStatistic(racer, start, finish));
         
         
         
-        //        
+        
+        
+//        Date vre1 = new Date(725000);
+//        Date vre2 = new Date(720000);
+//        System.out.println(vre1);
+//        System.out.println(String.format("%0"+ (20 - "Apple".length() )+"d%s %n",0 ,"Apple"));
+//        System.out.println(String.format("Now is %tT",vre1));
+//        System.out.println(String.format("Now is %tA %<tB %<tB %<td, %<tY",vre1));
+//       
+//        Duration t12 = Duration.between(vre1.toInstant(), vre2.toInstant());
+//        System.out.println(t12.getNano());
+//        
+//        //        
 //        
 //        //Date date = new Date("05/12/222");
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");

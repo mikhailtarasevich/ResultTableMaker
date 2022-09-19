@@ -4,11 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
-
 import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
 
 public class RacerParserImpl implements RacerParser {
@@ -16,7 +15,7 @@ public class RacerParserImpl implements RacerParser {
     @Override
     public Set<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList, List<String> finishTimeList) throws ParseException {
 
-        Set<Racer> racerList = new TreeSet<>();
+        Set<Racer> racerList = new HashSet<>();
         Map<String, String> racerNameMap = addRacerNameToMap(racerInfoList);
         Map<String, String> teamNameMap = addTeamNameToMap(racerInfoList);
         Map<String, String> startTimeMap = addTimeToMap(startTimeList);
@@ -53,7 +52,6 @@ public class RacerParserImpl implements RacerParser {
         }
 
         return nameMap;
-
     }
 
     private Map<String, String> addTimeToMap(List<String> timeList) {
