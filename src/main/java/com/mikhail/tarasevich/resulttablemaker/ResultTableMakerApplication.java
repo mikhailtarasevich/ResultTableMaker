@@ -34,7 +34,8 @@ public class ResultTableMakerApplication {
         FileInfoReader fileInfoReader = new FileInfoReaderImpl();
         RacerParser racerInfoList = new RacerParserImpl();
         ViewProvider viewProvider = new ViewProviderImpl();
-        StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator,fileInfoReader, racerInfoList, viewProvider);
+        int outOfQualificationLine = 16;
+        StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator,fileInfoReader, racerInfoList, viewProvider, outOfQualificationLine);
         
         String racer = "src\\main\\resources\\abbreviations.txt";
         String start = "src\\main\\resources\\start.log";

@@ -14,7 +14,7 @@ public class ViewProviderImpl implements ViewProvider {
     private static final String DOT = "."; 
     
     @Override
-    public StringBuilder provideResultTableView(Set<Racer> racerList) {
+    public StringBuilder provideResultTableView(Set<Racer> racerList, int outOfQualificationLine) {
         StringBuilder resultTable = new StringBuilder();
         int position = 0;
         int racerNameWidthColumn = calculateRacerNameColumnWidth(racerList);
@@ -33,7 +33,7 @@ public class ViewProviderImpl implements ViewProvider {
                     ,position, racer.getRacerName(), racer.getTeamName() 
                     ,lapTime.getDays(), lapTime.getHours(), lapTime.getMinutes(), lapTime.getSeconds(), lapTime.getMilliseconds()));
             resultTable.append(LINE_BRAKE);
-            if (position == 15) { 
+            if (position == outOfQualificationLine) { 
                 for(int i = 0; i < tableWidth; i++) resultTable.append(MINUS);
                 resultTable.append(LINE_BRAKE);
             }

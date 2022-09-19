@@ -18,12 +18,14 @@ public class StatisticAnalyzer {
     private final FileInfoReader fileInfoReader;
     private final RacerParser racerParser;
     private final ViewProvider viewProvider;
+    private final int outOfQualificationLine;
     
-    public StatisticAnalyzer(Validator validator, FileInfoReader fileInfoReader, RacerParser racerParser, ViewProvider viewProvider) {
+    public StatisticAnalyzer(Validator validator, FileInfoReader fileInfoReader, RacerParser racerParser, ViewProvider viewProvider, int outOfQualificationLine) {
         this.validator = validator;
         this.fileInfoReader = fileInfoReader;
         this.racerParser = racerParser;
         this.viewProvider = viewProvider;
+        this.outOfQualificationLine = outOfQualificationLine;
     }
     
     public String provideStatistic(String racerListReference,String startListReference,String finishListReference) throws ParseException, IOException {
@@ -41,7 +43,7 @@ public class StatisticAnalyzer {
             comparedRacerList.add(racer);
         }
                 
-        return viewProvider.provideResultTableView(comparedRacerList).toString();
+        return viewProvider.provideResultTableView(comparedRacerList, outOfQualificationLine).toString();
     }
     
     private class LapTimeComparator implements Comparator<Racer>{
