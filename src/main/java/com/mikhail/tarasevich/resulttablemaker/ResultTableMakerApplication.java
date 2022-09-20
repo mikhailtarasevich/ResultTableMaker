@@ -37,9 +37,9 @@ public class ResultTableMakerApplication {
         int outOfQualificationLine = 16;
         StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator,fileInfoReader, racerInfoList, viewProvider, outOfQualificationLine);
         
-        String racer = "src\\main\\resources\\abbreviations.txt";
-        String start = "src\\main\\resources\\start.log";
-        String finish = "src\\main\\resources\\end.log";
+        String racer = "abbreviations.txt";
+        String start = "start.log";
+        String finish = "end.log";
 
         
         System.out.println(statisticAnalyzer.provideStatistic(racer, start, finish));
