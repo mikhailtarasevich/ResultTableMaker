@@ -22,7 +22,7 @@ public class ValidatorImpl implements Validator {
         
         for (int i = 0; i < textFromFileInString.size(); i++) {
             if(textFromFileInString.get(i).substring(0, 3).matches("A-Z")) {
-                throw new IllegalArgumentException("File has no right format.");
+                throw new IllegalArgumentException("File has incorrect format.");
             }
         }
         

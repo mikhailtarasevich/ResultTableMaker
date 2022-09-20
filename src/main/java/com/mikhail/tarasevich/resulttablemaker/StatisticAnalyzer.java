@@ -38,14 +38,12 @@ public class StatisticAnalyzer {
                 fileInfoReader.readInfoFromFile(startListReference), fileInfoReader.readInfoFromFile(finishListReference));
         
       //  LapTimeComparator lapTimeComparator = new LapTimeComparator();
-        Comparator<Racer> LapTimeComparator = (r1, r2)-> r1.getTimeOfLap().compareTo(r2.getTimeOfLap());
+        Comparator<Racer> lapTimeComparator = (r1, r2)-> r1.getTimeOfLap().compareTo(r2.getTimeOfLap());
         
-        Set<Racer> comparedRacerList = new TreeSet<>(LapTimeComparator);
+        Set<Racer> comparedRacerList = new TreeSet<>(lapTimeComparator);
         for (Racer racer : racerList) {
             comparedRacerList.add(racer);
-        }
-        
-        
+        }     
         
         return viewProvider.provideResultTableView(comparedRacerList, outOfQualificationLine).toString();
     }
