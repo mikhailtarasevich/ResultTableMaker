@@ -1,15 +1,15 @@
 package com.mikhail.tarasevich.resulttablemaker.domain;
 
 import java.time.Duration;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Racer{
     
     private final String racerName;
     private final String teamName;
-    private final Date startTime;
-    private final Date finishTime;
+    private final LocalDateTime startTime;
+    private final LocalDateTime finishTime;
    
     private Racer(Builder builder) {
         this.racerName = builder.racerName;
@@ -19,7 +19,7 @@ public class Racer{
     }
     
     public Duration getTimeOfLap() {
-        return Duration.between(startTime.toInstant(), finishTime.toInstant());
+        return Duration.between(startTime, finishTime);
     }
     
     public String getRacerName() {
@@ -30,11 +30,11 @@ public class Racer{
         return teamName;
     }
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public Date getFinishTime() {
+    public LocalDateTime getFinishTime() {
         return finishTime;
     }
        
@@ -70,8 +70,12 @@ public class Racer{
         
         private  String racerName;
         private  String teamName;
-        private  Date startTime;
-        private  Date finishTime;
+        private  LocalDateTime startTime;
+        private  LocalDateTime finishTime;
+        
+        private Builder() {
+            
+        }
         
         public Builder racerName(final String racerName) {
             this.racerName = racerName;
@@ -83,12 +87,12 @@ public class Racer{
             return this;
         }
         
-        public Builder startTime(final Date startTime) {
+        public Builder startTime(final LocalDateTime startTime) {
             this.startTime = startTime;
             return this;
         }
         
-        public Builder finishTime(final Date finishTime) {
+        public Builder finishTime(final LocalDateTime finishTime) {
             this.finishTime = finishTime;
             return this;
         }

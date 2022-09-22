@@ -13,19 +13,19 @@ public class ValidatorImpl implements Validator {
     public void validateFile(String filePath) throws IOException {
         Path path = Paths.get(filePath);
         final List<String> textFromFileInString = Files.readAllLines(path);
-        if(!path.toFile().isFile()) {
+        if (!path.toFile().isFile()) {
             throw new FileNotFoundException("There is no file on this path.");
         }
-        if(textFromFileInString.isEmpty()) {
-            throw new IOException ("File is empty");
+        if (textFromFileInString.isEmpty()) {
+            throw new IOException("File is empty");
         }
-        
+
         for (int i = 0; i < textFromFileInString.size(); i++) {
-            if(textFromFileInString.get(i).substring(0, 3).matches("A-Z")) {
+            if (textFromFileInString.get(i).substring(0, 3).matches("A-Z")) {
                 throw new IllegalArgumentException("File has incorrect format.");
             }
         }
-        
+
     }
 
 }

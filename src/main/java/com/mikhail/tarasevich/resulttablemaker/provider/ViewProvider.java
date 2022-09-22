@@ -1,9 +1,9 @@
 package com.mikhail.tarasevich.resulttablemaker.provider;
 
-import java.util.Set;
+import java.util.List;
 
 import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
 
 public interface ViewProvider {
-    StringBuilder provideResultTableView (Set<Racer> racerList, int outOfQualificationLine);
+    String provideResultTableView (List<Racer> racerList, int outOfQualificationLine);
 }

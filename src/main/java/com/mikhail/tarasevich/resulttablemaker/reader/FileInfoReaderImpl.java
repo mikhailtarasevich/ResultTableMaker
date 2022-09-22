@@ -1,4 +1,4 @@
-package com.mikhail.tarasevich.resulttablemaker.provider;
+package com.mikhail.tarasevich.resulttablemaker.reader;
 
 import java.io.IOException;
 import java.nio.file.Files;
