@@ -1,5 +1,8 @@
 package com.mikhail.tarasevich.resulttablemaker;
 
+import java.io.IOException;
+import java.text.ParseException;
+
 import com.mikhail.tarasevich.resulttablemaker.parser.RacerParser;
 import com.mikhail.tarasevich.resulttablemaker.parser.RacerParserImpl;
 import com.mikhail.tarasevich.resulttablemaker.provider.ViewProvider;
@@ -11,7 +14,7 @@ import com.mikhail.tarasevich.resulttablemaker.validator.ValidatorImpl;
 
 public class ResultTableMakerApplication {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ParseException, IOException  {
 
         Validator validator = new ValidatorImpl();
         FileInfoReader fileInfoReader = new FileInfoReaderImpl();
@@ -26,5 +29,9 @@ public class ResultTableMakerApplication {
         String finish = "end.log";
 
         System.out.println(statisticAnalyzer.provideStatistic(racer, start, finish));
+        
+        
+        
+        
     }
 }

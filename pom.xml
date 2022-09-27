@@ -94,6 +94,8 @@
                  <configuration>
                     <excludes>
                         <exclude>com/mikhail/tarasevich/resulttablemaker/ResultTableMakerApplication.class</exclude>
+                        <exclude>com/mikhail/tarasevich/resulttablemaker/reader/FileInfoReaderImpl.class</exclude>
+                        <exclude>com/mikhail/tarasevich/resulttablemaker/domain/Racer.class</exclude>
                         <exclude></exclude>
                     </excludes>
                 </configuration>

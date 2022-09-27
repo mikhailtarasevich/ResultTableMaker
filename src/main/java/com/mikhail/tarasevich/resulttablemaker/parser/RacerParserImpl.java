@@ -14,7 +14,7 @@ public class RacerParserImpl implements RacerParser {
     
     @Override
     public List<Racer> createRacersList(List<String> racerInfoList, List<String> startTimeList,
-            List<String> finishTimeList) {
+            List<String> finishTimeList){
 
         Map<String, String> racerNameMap = addRacerNameToMap(racerInfoList);
         Map<String, String> teamNameMap = addTeamNameToMap(racerInfoList);
