@@ -1,7 +1,6 @@
 package com.mikhail.tarasevich.resulttablemaker;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
@@ -28,7 +27,7 @@ public class StatisticAnalyzer {
     }
 
     public String provideStatistic(String racerListReference, String startListReference, String finishListReference)
-            throws ParseException, IOException {
+            throws IOException {
 
         validator.validateFile(racerListReference);
         validator.validateFile(startListReference);
