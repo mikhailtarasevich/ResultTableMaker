@@ -5,7 +5,6 @@ import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,21 +36,18 @@ class StatisticAnalyzerTest {
     private RacerParser racerParser;
     @Mock
     private ViewProvider viewProvider;
-
     @InjectMocks
     StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator, fileInfoReader, racerParser, viewProvider, outOfQualificationLine);
 
     @Test
-    void provideStatistic_inputReferencesOnFiles_expectedResultTableInString() throws IOException, ParseException {
-
-        StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator, fileInfoReader, racerParser, viewProvider, outOfQualificationLine);
+    void provideStatistic_inputReferencesOnFiles_expectedResultTableInString() throws IOException {
 
         final String racerListReference = "src" + File.separator
                 + "test" + File.separator + "resources" + File.separator + "StatisticAnalyzerTestAbb.txt";
         final String startListReference = "src" + File.separator
                 + "test" + File.separator + "resources" + File.separator + "StatisticAnalyzerTestStart.log";
-        final String finishListReference ="src" + File.separator
-                + "test" + File.separator + "resources" + File.separator +  "StatisticAnalyzerTestEnd.log";
+        final String finishListReference = "src" + File.separator
+                + "test" + File.separator + "resources" + File.separator + "StatisticAnalyzerTestEnd.log";
         final String TIME_FORMAT = "yyyy-MM-dd_HH:mm:ss.SSS";
 
         final String expected = "Position  Racer name                    Team name                     Time      \n" +
@@ -97,7 +93,7 @@ class StatisticAnalyzerTest {
         racerList.add(racer2);
         racerList.add(racer3);
 
-        List<Racer> comparedRacerList =  racerList.stream()
+        List<Racer> comparedRacerList = racerList.stream()
                 .sorted((r1, r2) -> r1.getTimeOfLap().compareTo(r2.getTimeOfLap()))
                 .collect(Collectors.toList());
 
