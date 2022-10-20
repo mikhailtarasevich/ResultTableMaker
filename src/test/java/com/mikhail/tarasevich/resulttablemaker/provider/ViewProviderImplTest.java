@@ -19,9 +19,7 @@ class ViewProviderImplTest {
         
         ViewProvider viewProvider = new ViewProviderImpl();
         final int outOfQualificationLine = 1;
-        
         final List<Racer> racerList = new ArrayList<>();
-        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT);
         
         LocalDateTime start = LocalDateTime.parse("2022-09-27_10:00:00.000", formatter);
@@ -52,4 +50,5 @@ class ViewProviderImplTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
 }

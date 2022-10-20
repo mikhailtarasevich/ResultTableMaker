@@ -15,19 +15,17 @@ public class StatisticAnalyzer {
     private final FileInfoReader fileInfoReader;
     private final RacerParser racerParser;
     private final ViewProvider viewProvider;
-    private final int outOfQualificationLine;
 
     public StatisticAnalyzer(Validator validator, FileInfoReader fileInfoReader, RacerParser racerParser,
-            ViewProvider viewProvider, int outOfQualificationLine) {
+            ViewProvider viewProvider) {
         this.validator = validator;
         this.fileInfoReader = fileInfoReader;
         this.racerParser = racerParser;
         this.viewProvider = viewProvider;
-        this.outOfQualificationLine = outOfQualificationLine;
     }
 
-    public String provideStatistic(String racerListReference, String startListReference, String finishListReference)
-            throws IOException {
+    public String provideStatistic(String racerListReference, String startListReference, String finishListReference,
+                                   int outOfQualificationLine) throws IOException {
 
         validator.validateFile(racerListReference);
         validator.validateFile(startListReference);

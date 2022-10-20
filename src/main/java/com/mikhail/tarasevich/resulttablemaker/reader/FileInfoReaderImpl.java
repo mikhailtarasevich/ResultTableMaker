@@ -13,4 +13,5 @@ public class FileInfoReaderImpl implements FileInfoReader {
         Path path = Paths.get(filePath);
         return Files.readAllLines(path);
     }
+
 }

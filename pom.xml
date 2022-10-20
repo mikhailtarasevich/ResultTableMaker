@@ -6,10 +6,10 @@
     <properties>
         <junit-jupiter.version>5.9.0</junit-jupiter.version>
         <assertj-core.version>3.23.1</assertj-core.version>
+        <mockito-junit-jupiter>4.8.0</mockito-junit-jupiter>
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
-        <org.jacoco.version>0.8.5</org.jacoco.version>
     </properties>
     <dependencies>
         <dependency>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>4.8.0</version>
+            <version>${mockito-junit-jupiter}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -39,31 +39,32 @@
                 <version>${maven-surefire-plugin.version}</version>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>
-                            com.mikhail.tarasevich.resulttablemaker.ResultTableMakerApplication
-                            </mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
                 <executions>
                     <execution>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        com.mikhail.tarasevich.resulttablemaker.ResultTableMakerApplication
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

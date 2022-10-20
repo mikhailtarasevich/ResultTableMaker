@@ -14,7 +14,7 @@ import com.mikhail.tarasevich.resulttablemaker.validator.ValidatorImpl;
 
 public class ResultTableMakerApplication {
 
-    public static void main(String[] args) throws ParseException, IOException {
+    public static void main(String[] args) throws IOException {
 
         Validator validator = new ValidatorImpl();
         FileInfoReader fileInfoReader = new FileInfoReaderImpl();
@@ -22,30 +22,13 @@ public class ResultTableMakerApplication {
         ViewProvider viewProvider = new ViewProviderImpl();
         int outOfQualificationLine = 16;
         StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator, fileInfoReader, racerInfoList,
-                viewProvider, outOfQualificationLine);
+                viewProvider);
 
         final String racer = "abbreviations.txt";
         final String start = "start.log";
         final String finish = "end.log";
 
-        System.out.println(statisticAnalyzer.provideStatistic(racer, start, finish));
-
-//        Validator validator = new ValidatorImpl();
-//        FileInfoReader fileInfoReader = new FileInfoReaderImpl();
-//        RacerParser racerInfoList = new RacerParserImpl();
-//        ViewProvider viewProvider = new ViewProviderImpl();
-//        int outOfQualificationLine = 1;
-//        StatisticAnalyzer statisticAnalyzer = new StatisticAnalyzer(validator, fileInfoReader, racerInfoList,
-//                viewProvider, outOfQualificationLine);
-
-//        final String racerListReference = "src\\test\\resources\\StatisticAnalyzerTestAbb.txt";
-//        final String startListReference = "src\\test\\resources\\StatisticAnalyzerTestStart.log";
-//        final String finishListReference = "src\\test\\resources\\StatisticAnalyzerTestEnd.log";
-//        final String racerListReference = "src/test/resources/StatisticAnalyzerTestAbb.txt";
-//        final String startListReference = "src/test/resources/StatisticAnalyzerTestStart.log";
-//        final String finishListReference = "src/test/resources/StatisticAnalyzerTestEnd.log";
-//        System.out.println(statisticAnalyzer.provideStatistic(racerListReference, startListReference, finishListReference));
-
-
+        System.out.println(statisticAnalyzer.provideStatistic(racer, start, finish, outOfQualificationLine));
     }
+
 }

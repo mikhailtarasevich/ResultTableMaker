@@ -21,19 +21,15 @@ public class Racer{
     public Duration getTimeOfLap() {
         return Duration.between(startTime, finishTime);
     }
-    
     public String getRacerName() {
         return racerName;
     }
-
     public String getTeamName() {
         return teamName;
     }
-
     public LocalDateTime getStartTime() {
         return startTime;
     }
-
     public LocalDateTime getFinishTime() {
         return finishTime;
     }
