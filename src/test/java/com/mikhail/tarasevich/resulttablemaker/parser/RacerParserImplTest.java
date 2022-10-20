@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.mikhail.tarasevich.resulttablemaker.domain.Racer;
 
-public class RacerParserImplTest {
+class RacerParserImplTest {
 
     private static final String TIME_FORMAT = "yyyy-MM-dd_HH:mm:ss.SSS";
 

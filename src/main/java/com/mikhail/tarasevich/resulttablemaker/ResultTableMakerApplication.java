@@ -1,7 +1,6 @@
 package com.mikhail.tarasevich.resulttablemaker;
 
 import java.io.IOException;
-import java.text.ParseException;
 
 import com.mikhail.tarasevich.resulttablemaker.parser.RacerParser;
 import com.mikhail.tarasevich.resulttablemaker.parser.RacerParserImpl;
