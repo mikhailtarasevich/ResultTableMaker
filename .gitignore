@@ -7,3 +7,7 @@
 .log
 .DS_Store
 .idea
+
+abbreviations.txt
+end.log
+start.log
