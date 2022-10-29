@@ -107,7 +107,7 @@ class StatisticAnalyzerTest {
         when(viewProvider.provideResultTableView(comparedRacerList, outOfQualificationLine)).thenReturn(expected);
 
         assertEquals(statisticAnalyzer.provideStatistic(racerListReference, startListReference, finishListReference
-                , outOfQualificationLine), expected);
+                     , outOfQualificationLine), expected);
 
         verify(validator).validateFile(racerListReference);
         verify(validator).validateFile(startListReference);
